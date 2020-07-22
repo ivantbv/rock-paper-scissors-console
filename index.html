@@ -1,0 +1,88 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Rock Paper Scissors</title>
+    </head>
+    <body>
+
+        <script>
+            //Assigning values to key variables
+
+            let rps = ['rock', 'paper', 'scissors']; 
+            let playerScore = 0;
+            let computerScore = 0;
+            let draw = 0;
+
+            let loseCondition1 = 'You lose! Rock beats scissors.';
+            let loseCondition2 = 'You lose! Paper beats rock.';
+            let loseCondition3 = 'You lose! Scissors beat paper.';
+            let winCondition1 = 'You win! Scissors beat paper.';
+            let winCondition2 = 'You win! Rock beats scissors.';
+            let winCondition3 = 'You win! Paper beats rock.';
+            let tie = 'Its a tie!';
+
+            // computer random choice function
+
+            function computerPlay() {  
+                return rps[Math.floor(Math.random() * rps.length)]
+            }
+
+            //one round game with a condition deciding who is the winner
+            function singleRound(playerSelection, computerSelection) {
+
+                computerSelection = computerPlay();
+                console.log(playerSelection, computerSelection); 
+
+                    if (playerSelection == rps[2] && computerSelection == rps[0]) {
+                        console.log(loseCondition1);
+                        computerScore++;
+                    } else if (playerSelection == rps[0] && computerSelection == rps[1]) {
+                        console.log(loseCondition2);
+                        computerScore++;
+                    } else if (playerSelection == rps[1] && computerSelection == rps[2]) {
+                        console.log(loseCondition3);
+                        computerScore++;
+                    } else if (playerSelection == rps[2] && computerSelection == rps[1]) {
+                        console.log(winCondition1);
+                        playerScore++;
+                    } else if (playerSelection == rps[0] && computerSelection == rps[2]) {
+                        console.log(winCondition2);
+                        playerScore++;
+                    } else if (playerSelection == rps[1] && computerSelection == rps[0]) {
+                        console.log(winCondition3);
+                        playerScore++;
+                    } else {
+                        console.log(tie);
+                        draw++;
+                    }
+            }      
+        const computerSelection = computerPlay();
+            
+      // looping 5 rounds, summing the score and deciding the winner at the end 
+        function game() {            
+            singleRound(prompt('Rock, paper or scissors?').toLowerCase());
+            console.log(`Player ${playerScore} : ${computerScore} Computer`)
+            singleRound(prompt('Rock, paper or scissors?').toLowerCase());
+            console.log(`Player ${playerScore} : ${computerScore} Computer`)
+             singleRound(prompt('Rock, paper or scissors?').toLowerCase());
+             console.log(`Player ${playerScore} : ${computerScore} Computer`)
+             singleRound(prompt('Rock, paper or scissors?').toLowerCase());
+             console.log(`Player ${playerScore} : ${computerScore} Computer`);
+             singleRound(prompt('Rock, paper or scissors?').toLowerCase());
+             console.log(`Player ${playerScore} : ${computerScore} Computer`);
+
+           
+           if (playerScore > computerScore) {
+               alert('You beat the computer in his own game!');
+           } else if (computerScore > playerScore) {
+               alert('You lost. Roll again!')
+           } else {
+               draw;
+               alert('Its a tie!')
+           }
+      } 
+    game();
+        </script>
+    </body>
+</html>
